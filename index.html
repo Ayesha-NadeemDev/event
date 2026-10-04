@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Event Co. | Luxury Wedding Planning | Toledo, Ohio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            champagne: '#FDFBF7',
+                            cream: '#F7F3EC',
+                            gold: '#D4AF37',
+                            softgold: '#E6CA65',
+                            darkgold: '#B38F24',
+                            blush: '#F4EAE8',
+                            rose: '#E8D3D1',
+                            charcoal: '#1A1817',
+                            muted: '#6B6560'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #B8922A 0%, #E6CA65 50%, #9A771E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #E6CA65 50%, #B8922A 100%);
+        }
+        .bg-glass {
+            background: rgba(253, 251, 247, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .shadow-soft {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+        .shadow-luxury {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
+
+        /* Page View Switch Transitions */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 400ms ease-in-out;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Slideshow Transition Effects */
+        .slide-item {
+            opacity: 0;
+            transition: opacity 1000ms ease-in-out, transform 1200ms ease-out;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+        .slide-item.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-brand-champagne text-brand-charcoal font-sans antialiased selection:bg-brand-rose selection:text-brand-charcoal">
+
+    <div class="bg-brand-charcoal text-brand-champagne py-2 px-4 text-xs tracking-wider uppercase text-center flex justify-between items-center border-b border-brand-gold/20">
+        <div class="hidden sm:flex items-center gap-4 text-[11px] font-medium">
+            <span><i class="fa-solid fa-location-dot me-1 text-brand-gold"></i> Toledo, Ohio</span>
+            <a href="tel:4193923569" class="hover:text-brand-gold transition-colors"><i class="fa-solid fa-phone me-1 text-brand-gold"></i> 419-392-3569</a>
+        </div>
+        <div class="mx-auto sm:mx-0 text-[11px]">
+            <span class="text-brand-gold font-semibold">Social Event Co.</span> — Luxury Weddings & Events
+        </div>
+        <div class="hidden md:flex items-center gap-3">
+            <a href="https://www.facebook.com/Socialeventscoohio/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/socialeventsco/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:info@socialeventsco.com" class="hover:text-brand-gold transition-colors" title="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-glass border-b border-brand-rose/30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="javascript:void(0)" onclick="switchPage('home')" class="flex flex-col">
+                    <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-brand-charcoal uppercase">Social Event <span class="gold-gradient-text font-normal italic">Co.</span></span>
+                    <span class="text-[9px] tracking-[0.25em] uppercase text-brand-muted font-semibold -mt-1">Luxury Wedding Planning</span>
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-brand-charcoal">
+                    <a href="javascript:void(0)" onclick="switchPage('home')" id="nav-home" class="nav-link text-brand-darkgold font-bold">Home</a>
+                    <a href="javascript:void(0)" onclick="switchPage('about')" id="nav-about" class="nav-link hover:text-brand-darkgold transition-colors">About Us</a>
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'gallery')" class="nav-link hover:text-brand-darkgold transition-colors">Portfolio</a>
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'testimonials')" class="nav-link hover:text-brand-darkgold transition-colors">Love Stories</a>
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'inquiry')" class="nav-link hover:text-brand-darkgold transition-colors">Wedding Inquiry</a>
+                </nav>
+
+                <div class="hidden sm:block">
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'inquiry')" class="px-5 py-2.5 bg-brand-charcoal text-brand-champagne hover:bg-brand-gold hover:text-brand-charcoal text-xs uppercase tracking-widest font-semibold transition-all duration-300">
+                        Inquire Now
+                    </a>
+                </div>
+
+                <button id="mobile-toggle" class="md:hidden text-brand-charcoal p-2 focus:outline-none" aria-label="Toggle navigation menu">
+                    <i id="toggle-icon" class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-champagne border-b border-brand-rose/40 px-6 py-6 space-y-4 text-center">
+            <a href="javascript:void(0)" onclick="switchPage('home')" class="mobile-nav-link block text-xs uppercase tracking-widest font-bold">Home</a>
+            <a href="javascript:void(0)" onclick="switchPage('about')" class="mobile-nav-link block text-xs uppercase tracking-widest font-bold">About Us</a>
+            <a href="javascript:void(0)" onclick="navigateToSection('home', 'gallery')" class="mobile-nav-link block text-xs uppercase tracking-widest font-bold">Portfolio</a>
+            <a href="javascript:void(0)" onclick="navigateToSection('home', 'testimonials')" class="mobile-nav-link block text-xs uppercase tracking-widest font-bold">Love Stories</a>
+            <a href="javascript:void(0)" onclick="navigateToSection('home', 'inquiry')" class="mobile-nav-link block text-xs uppercase tracking-widest font-bold">Wedding Inquiry</a>
+            <div class="pt-4 border-t border-brand-rose/40 flex justify-center gap-6 text-lg text-brand-charcoal">
+                <a href="https://www.facebook.com/Socialeventscoohio/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/socialeventsco/?hl=en" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <a href="tel:4193923569"><i class="fa-solid fa-phone"></i></a>
+                <a href="mailto:info@socialeventsco.com"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div id="page-home" class="page-view active">
+
+        <!-- Hero Section -->
+        <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center bg-brand-charcoal overflow-hidden">
+            <div class="absolute inset-0 opacity-40 mix-blend-luminosity">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" alt="Wedding Celebration Setup" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/50 to-transparent"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-brand-champagne">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-brand-gold/20 border border-brand-gold/40 text-brand-gold text-xs uppercase tracking-widest mb-6 font-semibold">
+                    Toledo, Ohio & Destination Planners
+                </span>
+                <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-tight mb-6">
+                    Crafting Unforgettable Weddings <br>
+                    <span class="italic text-brand-gold font-light">In Toledo & Beyond</span>
+                </h1>
+                <p class="text-sm sm:text-base text-brand-champagne/80 font-light max-w-xl mx-auto mb-8 leading-relaxed">
+                    Elevated event design, seamless organization, and timeless celebrations tailored uniquely to your love story.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'inquiry')" class="w-full sm:w-auto px-8 py-4 gold-bg-gradient text-brand-charcoal font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg flex items-center justify-center gap-2">
+                        <span>Begin Your Inquiry</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#gallery" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-brand-champagne/40 text-brand-champagne font-semibold text-xs uppercase tracking-widest hover:border-brand-gold hover:text-brand-gold transition-all">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Gallery -->
+        <section id="gallery" class="py-20 bg-brand-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs uppercase tracking-[0.25em] text-brand-darkgold font-bold">Visual Inspiration</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-normal text-brand-charcoal mt-1 mb-3">Our Featured Gallery</h2>
+                    <div class="w-12 h-0.5 bg-brand-gold mx-auto mb-4"></div>
+                    <p class="text-brand-muted text-xs sm:text-sm">Explore our custom pin decor, reception tablescapes, ceremonies, and full event designs.</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-container">
+                    <button data-filter="all" class="filter-btn active px-4 py-1.5 text-xs uppercase tracking-wider border border-brand-gold bg-brand-gold text-brand-charcoal font-bold transition-all">All Photos</button>
+                    <button data-filter="decor" class="filter-btn px-4 py-1.5 text-xs uppercase tracking-wider border border-brand-rose/60 bg-white text-brand-muted hover:border-brand-gold hover:text-brand-charcoal font-semibold transition-all">Pin Decor & Styling</button>
+                    <button data-filter="full" class="filter-btn px-4 py-1.5 text-xs uppercase tracking-wider border border-brand-rose/60 bg-white text-brand-muted hover:border-brand-gold hover:text-brand-charcoal font-semibold transition-all">Full Planning</button>
+                    <button data-filter="ceremony" class="filter-btn px-4 py-1.5 text-xs uppercase tracking-wider border border-brand-rose/60 bg-white text-brand-muted hover:border-brand-gold hover:text-brand-charcoal font-semibold transition-all">Ceremonies</button>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                    
+                    <div class="gallery-item group relative h-80 overflow-hidden shadow-soft cursor-pointer border border-brand-rose/30" data-category="decor" onclick="openLightbox('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80', 'Opulent Reception Tablescape & Candlelight', 'The Toledo Club')">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Opulent Tablescape" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/F4EAE8/1A1817?text=Decor+Tablescape'">
+                        <div class="absolute inset-0 bg-brand-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Pin Decor & Styling</span>
+                            <h4 class="font-serif text-lg">Opulent Reception Tablescape</h4>
+                            <p class="text-xs text-white/80">The Toledo Club</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative h-80 overflow-hidden shadow-soft cursor-pointer border border-brand-rose/30" data-category="decor" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80', 'Luxury Floral Table Centerpiece', 'Private Estate, Toledo')">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="Luxury Floral Centerpiece" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/F4EAE8/1A1817?text=Floral+Centerpiece'">
+                        <div class="absolute inset-0 bg-brand-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Pin Decor & Styling</span>
+                            <h4 class="font-serif text-lg">Luxury Floral Table Centerpiece</h4>
+                            <p class="text-xs text-white/80">Private Estate, Toledo</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative h-80 overflow-hidden shadow-soft cursor-pointer border border-brand-rose/30" data-category="decor" onclick="openLightbox('https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1600&q=80', 'Custom Floral Arch & Backdrop', 'Glass City Metropark')">
+                        <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=800&q=80" alt="Floral Arch" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/F4EAE8/1A1817?text=Floral+Arch'">
+                        <div class="absolute inset-0 bg-brand-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Pin Decor & Styling</span>
+                            <h4 class="font-serif text-lg">Custom Floral Arch Backdrop</h4>
+                            <p class="text-xs text-white/80">Glass City Metropark</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative h-80 overflow-hidden shadow-soft cursor-pointer border border-brand-rose/30" data-category="full" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=80', 'Grand Banquet Hall Design', 'Toledo Museum of Art')">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Grand Banquet Hall" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/F4EAE8/1A1817?text=Banquet+Hall'">
+                        <div class="absolute inset-0 bg-brand-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Full Planning</span>
+                            <h4 class="font-serif text-lg">Grand Banquet Hall Design</h4>
+                            <p class="text-xs text-white/80">Toledo Museum of Art</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative h-80 overflow-hidden shadow-soft cursor-pointer border border-brand-rose/30" data-category="ceremony" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80', 'Outdoor Botanical Garden Ceremony', 'Toledo Botanical Garden')">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Ceremony Setup" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/F4EAE8/1A1817?text=Ceremony+Setup'">
+                        <div class="absolute inset-0 bg-brand-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Ceremonies</span>
+                            <h4 class="font-serif text-lg">Outdoor Botanical Garden Ceremony</h4>
+                            <p class="text-xs text-white/80">Toledo Botanical Garden</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item group relative h-80 overflow-hidden shadow-soft cursor-pointer border border-brand-rose/30" data-category="full" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1600&q=80', 'Elegant Wedding Celebration', 'Downtown Toledo Ballroom')">
+                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="Wedding Celebration" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/800x600/F4EAE8/1A1817?text=Wedding+Celebration'">
+                        <div class="absolute inset-0 bg-brand-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                            <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Full Planning</span>
+                            <h4 class="font-serif text-lg">Elegant Wedding Celebration</h4>
+                            <p class="text-xs text-white/80">Downtown Toledo Ballroom</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-darkgold font-bold">Kind Words</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-normal text-brand-charcoal mt-1 mb-8">Love Stories</h2>
+
+                <div class="relative bg-brand-champagne p-8 sm:p-12 border border-brand-rose/40 shadow-luxury">
+                    <div class="text-brand-gold text-2xl mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                    <div class="min-h-[140px] flex flex-col justify-between">
+                        <p id="quote-text" class="font-serif text-lg sm:text-2xl text-brand-charcoal italic leading-relaxed mb-6">
+                            "Social Event Co. made our wedding in Toledo completely seamless! Every detail was handled with precision and extreme elegance."
+                        </p>
+                        <div>
+                            <h4 id="quote-author" class="font-bold text-xs uppercase tracking-widest text-brand-charcoal">Jessica & David M.</h4>
+                            <span id="quote-location" class="text-[11px] text-brand-muted uppercase tracking-wider">Married at The Toledo Museum of Art</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center items-center gap-4 mt-8">
+                        <button onclick="prevQuote()" class="w-9 h-9 rounded-full border border-brand-rose/60 hover:bg-brand-charcoal hover:text-brand-gold transition-colors text-brand-charcoal flex items-center justify-center" aria-label="Previous quote">
+                            <i class="fa-solid fa-angle-left text-xs"></i>
+                        </button>
+                        <button onclick="nextQuote()" class="w-9 h-9 rounded-full border border-brand-rose/60 hover:bg-brand-charcoal hover:text-brand-gold transition-colors text-brand-charcoal flex items-center justify-center" aria-label="Next quote">
+                            <i class="fa-solid fa-angle-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inquiry" class="py-20 bg-brand-cream border-t border-brand-rose/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+                    
+                    <!-- Left Side: Formal Wedding Inquiry Details Form -->
+                    <div class="lg:col-span-6 bg-white p-8 sm:p-10 border border-brand-rose/40 shadow-luxury flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs uppercase tracking-[0.25em] text-brand-darkgold font-bold">Consultation Request</span>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-normal text-brand-charcoal mt-1 mb-3">Wedding Inquiry Details</h2>
+                            <p class="text-xs text-brand-muted leading-relaxed mb-6">
+                                Share the details of your vision with our Toledo planning team. Please fill out the form below and we will contact you within 24 hours.
+                            </p>
+                            
+                            <form id="wedding-inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Full Name *</label>
+                                        <input type="text" required placeholder="e.g. Jessica Miller" class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Email Address *</label>
+                                        <input type="email" required placeholder="name@domain.com" class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Phone Number *</label>
+                                        <input type="tel" required placeholder="e.g. 419-555-0199" class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Target Wedding Date</label>
+                                        <input type="date" class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Estimated Guest Count</label>
+                                        <select class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                            <option value="">Select guest range</option>
+                                            <option value="under50">Under 50 Guests</option>
+                                            <option value="50-150">50 - 150 Guests</option>
+                                            <option value="150-250">150 - 250 Guests</option>
+                                            <option value="250plus">250+ Guests</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Venue / Preferred Location</label>
+                                        <input type="text" placeholder="e.g. Toledo Museum of Art / TBD" class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Planning Service Needed *</label>
+                                    <select required class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors">
+                                        <option value="">Select primary service</option>
+                                        <option value="full">Full-Service Wedding Planning & Design</option>
+                                        <option value="decor">Pin Decor, Floral & Tablescape Styling</option>
+                                        <option value="month">Month-Of & Day-Of Coordination</option>
+                                        <option value="custom">Custom Event Planning</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">Additional Vision & Details</label>
+                                    <textarea rows="3" placeholder="Tell us about your theme, aesthetic, budget goals, or specific Pinterest ideas..." class="w-full px-3.5 py-2.5 text-xs bg-brand-champagne border border-brand-rose/60 focus:border-brand-gold focus:outline-none transition-colors"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 gold-bg-gradient text-brand-charcoal font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-md flex items-center justify-center gap-2">
+                                    <span>Submit Wedding Inquiry</span>
+                                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                                </button>
+                            </form>
+
+                            <div id="inquiry-success-message" class="hidden p-6 bg-brand-champagne border border-brand-gold text-center my-4">
+                                <i class="fa-solid fa-circle-check text-brand-gold text-3xl mb-2"></i>
+                                <h4 class="font-serif text-lg font-bold text-brand-charcoal">Inquiry Received</h4>
+                                <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+                                    Thank you! Our lead wedding planner at Social Event Co. will review your event details and reach out within 24 hours.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: 5-Second Timer Wedding Image Slideshow -->
+                    <div class="lg:col-span-6 flex flex-col min-h-[500px]">
+                        <div class="relative w-full h-full min-h-[500px] overflow-hidden shadow-luxury border-2 border-brand-gold/30 rounded-sm group bg-brand-charcoal">
+                            
+                            <!-- Slide 1 -->
+                            <div class="slide-item active absolute inset-0 w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80" alt="Bespoke Wedding Setup" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/85 via-transparent to-black/20"></div>
+                                <div class="absolute bottom-10 left-8 right-8 text-white">
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">Toledo Wedding Excellence</span>
+                                    <h3 class="font-serif text-2xl sm:text-3xl font-normal">Timeless Outdoor Ceremony Design</h3>
+                                    <p class="text-xs text-white/80 mt-1 font-light">Crafted with precision, floral arches, and curated guest seating.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="slide-item absolute inset-0 w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80" alt="Luxury Reception Tablescape" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/85 via-transparent to-black/20"></div>
+                                <div class="absolute bottom-10 left-8 right-8 text-white">
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">Pin Decor & Styling</span>
+                                    <h3 class="font-serif text-2xl sm:text-3xl font-normal">Opulent Candlelight Reception</h3>
+                                    <p class="text-xs text-white/80 mt-1 font-light">Custom glassware, delicate centerpieces, and warm romantic ambient lighting.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="slide-item absolute inset-0 w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=80" alt="Romantic Bride and Groom" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/85 via-transparent to-black/20"></div>
+                                <div class="absolute bottom-10 left-8 right-8 text-white">
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">Unforgettable Memories</span>
+                                    <h3 class="font-serif text-2xl sm:text-3xl font-normal">Seamless Full Event Coordination</h3>
+                                    <p class="text-xs text-white/80 mt-1 font-light">Allowing you to cherish every single moment while we handle all logistics.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="slide-item absolute inset-0 w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80" alt="Floral Backdrop and Decor" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/85 via-transparent to-black/20"></div>
+                                <div class="absolute bottom-10 left-8 right-8 text-white">
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">Elegance in Details</span>
+                                    <h3 class="font-serif text-2xl sm:text-3xl font-normal">Custom Floral Installations</h3>
+                                    <p class="text-xs text-white/80 mt-1 font-light">Transforming spaces with luxury roses, greenery, and statement arrangements.</p>
+                                </div>
+                            </div>
+
+                            <!-- Progress Line Indicator -->
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-white/20 z-20">
+                                <div id="slide-progress-bar" class="h-full bg-brand-gold w-0"></div>
+                            </div>
+
+                            <!-- Manual Navigation Controls -->
+                            <button onclick="changeWeddingSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-brand-charcoal/60 hover:bg-brand-gold hover:text-brand-charcoal text-white flex items-center justify-center transition-all backdrop-blur-sm border border-white/20" aria-label="Previous slide">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="changeWeddingSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-brand-charcoal/60 hover:bg-brand-gold hover:text-brand-charcoal text-white flex items-center justify-center transition-all backdrop-blur-sm border border-white/20" aria-label="Next slide">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+
+                            <!-- Indicator Dots -->
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2" id="slide-dots">
+                                <button onclick="goToWeddingSlide(0)" class="w-2.5 h-2.5 rounded-full bg-brand-gold transition-all duration-300" aria-label="Go to slide 1"></button>
+                                <button onclick="goToWeddingSlide(1)" class="w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300" aria-label="Go to slide 2"></button>
+                                <button onclick="goToWeddingSlide(2)" class="w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300" aria-label="Go to slide 3"></button>
+                                <button onclick="goToWeddingSlide(3)" class="w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300" aria-label="Go to slide 4"></button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div id="page-about" class="page-view">
+        
+        <!-- About Page Header Banner -->
+        <section class="bg-brand-charcoal py-16 text-center text-brand-champagne relative border-b border-brand-gold/30 overflow-hidden">
+            <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80');"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-4">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold block mb-2">Our Story & Heritage</span>
+                <h1 class="font-serif text-4xl sm:text-6xl font-normal">About Social Event Co.</h1>
+                <div class="w-16 h-0.5 bg-brand-gold mx-auto my-4"></div>
+                <p class="text-xs sm:text-sm text-brand-champagne/80 font-light max-w-xl mx-auto leading-relaxed">
+                    Dedicated luxury wedding planners based in Toledo, Ohio, crafting unforgettable celebrations through bespoke design and seamless coordination.
+                </p>
+                <div class="mt-6 flex justify-center items-center gap-2 text-xs uppercase tracking-widest text-brand-gold">
+                    <a href="javascript:void(0)" onclick="switchPage('home')" class="hover:underline text-brand-champagne">Home</a>
+                    <span>/</span>
+                    <span class="font-bold">About Us</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main About Us Content Section -->
+        <section class="py-20 bg-brand-champagne">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Block 1: Text Left, Image Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-darkgold bg-brand-rose/30 px-3.5 py-1.5 rounded-full border border-brand-rose">
+                            Our Vision & Passion
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-5xl text-brand-charcoal leading-tight">Elevating Toledo Weddings with Timeless Sophistication</h2>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            At Social Event Co., we believe your wedding day should be a flawless reflection of your unique love story. Based in Toledo, Ohio, our luxury wedding planning team specializes in transforming ambitious event concepts into breathtaking, stress-free realities.
+                        </p>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            From romantic vows at the Toledo Botanical Garden to grand ballroom receptions at historic downtown landmarks, we oversee every aesthetic and logistical detail with genuine heart and meticulous care.
+                        </p>
+                        
+                        <div class="pt-4 flex items-center gap-8 border-t border-brand-rose/40">
+                            <div>
+                                <span class="font-serif text-3xl font-bold text-brand-darkgold block">10+</span>
+                                <span class="text-[11px] uppercase tracking-wider text-brand-muted font-semibold">Years Experience</span>
+                            </div>
+                            <div class="h-10 w-px bg-brand-rose/60"></div>
+                            <div>
+                                <span class="font-serif text-3xl font-bold text-brand-darkgold block">250+</span>
+                                <span class="text-[11px] uppercase tracking-wider text-brand-muted font-semibold">Weddings Planned</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Image -->
+                    <div class="lg:col-span-6">
+                        <div class="relative group">
+                            <div class="absolute -inset-2 rounded-sm bg-gradient-to-r from-brand-gold/30 to-brand-rose/40 blur-md opacity-75 group-hover:opacity-100 transition duration-500"></div>
+                            <div class="relative overflow-hidden border-2 border-brand-gold/40 shadow-luxury bg-white">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80" alt="Wedding Planner Styling Setup" class="w-full h-[400px] sm:h-[480px] object-cover hover:scale-105 transition-transform duration-700">
+                                <div class="absolute bottom-4 left-4 right-4 bg-glass p-3 border border-brand-gold/30 text-center">
+                                    <span class="text-[11px] uppercase tracking-widest text-brand-charcoal font-bold">Curated Tablescapes & Pin Decor Styling</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 2: Image Left, Text Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+                    
+                    <!-- Left Side Image -->
+                    <div class="lg:col-span-6 order-2 lg:order-1">
+                        <div class="relative group">
+                            <div class="absolute -inset-2 rounded-sm bg-gradient-to-r from-brand-rose/40 to-brand-gold/30 blur-md opacity-75 group-hover:opacity-100 transition duration-500"></div>
+                            <div class="relative overflow-hidden border-2 border-brand-gold/40 shadow-luxury bg-white">
+                                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80" alt="Bespoke Wedding Design" class="w-full h-[400px] sm:h-[480px] object-cover hover:scale-105 transition-transform duration-700">
+                                <div class="absolute bottom-4 left-4 right-4 bg-glass p-3 border border-brand-gold/30 text-center">
+                                    <span class="text-[11px] uppercase tracking-widest text-brand-charcoal font-bold">Seamless Floral & Spatial Coordination</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Text -->
+                    <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-darkgold bg-brand-rose/30 px-3.5 py-1.5 rounded-full border border-brand-rose">
+                            Our Signature Approach
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-5xl text-brand-charcoal leading-tight">Bringing Inspiration to Life with Flawless Precision</h2>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            We turn Pinterest boards and dream wedding visions into concrete, stunning designs. Our experienced planners collaborate closely with Toledo's finest florists, venues, caterers, and photographers to keep every piece aligned in harmony.
+                        </p>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            On your big day, you shouldn't worry about vendor arrival schedules or timeline shifts. We manage the background orchestra so that you and your loved ones can focus entirely on celebrating your union.
+                        </p>
+
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <a href="javascript:void(0)" onclick="navigateToSection('home', 'inquiry')" class="inline-flex items-center gap-2 px-6 py-3.5 gold-bg-gradient text-brand-charcoal font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-md">
+                                <span>Submit Your Wedding Inquiry</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="navigateToSection('home', 'gallery')" class="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-charcoal text-brand-champagne font-semibold text-xs uppercase tracking-widest hover:bg-brand-gold hover:text-brand-charcoal transition-all shadow-md">
+                                <span>Explore Gallery</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold focus:outline-none" aria-label="Close modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-4xl max-h-[90vh] text-center">
+            <img id="lightbox-img" src="" alt="Full Preview" class="max-h-[75vh] mx-auto shadow-2xl border-2 border-brand-gold/30">
+            <h3 id="lightbox-title" class="font-serif text-xl text-brand-champagne mt-4"></h3>
+            <p id="lightbox-subtitle" class="text-xs text-brand-gold font-medium uppercase tracking-widest"></p>
+        </div>
+    </div>
+
+    <footer class="bg-brand-charcoal text-brand-champagne py-12 border-t border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-6 pb-8 border-b border-brand-champagne/10">
+                <div>
+                    <span class="font-serif text-2xl font-bold tracking-tight uppercase block">Social Event <span class="gold-gradient-text font-normal italic">Co.</span></span>
+                    <span class="text-[9px] tracking-[0.2em] uppercase text-brand-gold block">Luxury Wedding Planning • Toledo, Ohio</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-xs text-brand-champagne/80 font-medium">
+                    <a href="javascript:void(0)" onclick="switchPage('home')" class="hover:text-brand-gold">Home</a>
+                    <a href="javascript:void(0)" onclick="switchPage('about')" class="hover:text-brand-gold">About Us</a>
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'gallery')" class="hover:text-brand-gold">Portfolio</a>
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'testimonials')" class="hover:text-brand-gold">Love Stories</a>
+                    <a href="javascript:void(0)" onclick="navigateToSection('home', 'inquiry')" class="hover:text-brand-gold">Wedding Inquiry</a>
+                </div>
+                <div class="flex gap-3 text-brand-gold text-sm">
+                    <a href="https://www.facebook.com/Socialeventscoohio/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/socialeventsco/?hl=en" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="mailto:info@socialeventsco.com"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-[11px] text-brand-champagne/50">
+                <p>&copy; 2026 Social Event Co. All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0">Toledo, OH • 419-392-3569 • info@socialeventsco.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Switching Logic (Multi-Page SPA view switching)
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(p => p.classList.remove('active'));
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-brand-darkgold', 'font-bold');
+            });
+
+            if (pageId === 'home') {
+                const navHome = document.getElementById('nav-home');
+                if (navHome) navHome.classList.add('text-brand-darkgold', 'font-bold');
+            } else if (pageId === 'about') {
+                const navAbout = document.getElementById('nav-about');
+                if (navAbout) navAbout.classList.add('text-brand-darkgold', 'font-bold');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateToSection(pageId, sectionId) {
+            switchPage(pageId);
+            setTimeout(() => {
+                const targetEl = document.getElementById(sectionId);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                toggleIcon.className = 'fa-solid fa-bars text-2xl';
+            } else {
+                toggleIcon.className = 'fa-solid fa-xmark text-2xl';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                toggleIcon.className = 'fa-solid fa-bars text-2xl';
+            });
+        });
+
+        // Gallery Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-gold', 'text-brand-charcoal', 'border-brand-gold');
+                    b.classList.add('bg-white', 'text-brand-muted', 'border-brand-rose/60');
+                });
+                btn.classList.remove('bg-white', 'text-brand-muted', 'border-brand-rose/60');
+                btn.classList.add('bg-brand-gold', 'text-brand-charcoal', 'border-brand-gold');
+
+                const filter = btn.getAttribute('data-filter');
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Modal Functions
+        function openLightbox(src, title, subtitle) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-subtitle').textContent = subtitle;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // Inquiry Form Handler
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('wedding-inquiry-form');
+            const successMsg = document.getElementById('inquiry-success-message');
+            form.classList.add('hidden');
+            successMsg.classList.remove('hidden');
+        }
+
+        // Testimonials Carousel Logic
+        const quotes = [
+            {
+                quote: "Social Event Co. made our wedding in Toledo completely seamless! Every detail was handled with precision and extreme elegance.",
+                author: "Jessica & David M.",
+                location: "Married at The Toledo Museum of Art"
+            },
+            {
+                quote: "Working with Social Event Co. was the single best decision we made. They brought our vision to life stress-free!",
+                author: "Amanda & Tyler K.",
+                location: "Married at The Toledo Club"
+            },
+            {
+                quote: "The decor styling and centerpiece floral management exceeded all our expectations. Highly recommend!",
+                author: "Rachel & Marcus B.",
+                location: "Married at Toledo Botanical Garden"
+            }
+        ];
+
+        let quoteIndex = 0;
+        function renderQuote(idx) {
+            document.getElementById('quote-text').textContent = `"${quotes[idx].quote}"`;
+            document.getElementById('quote-author').textContent = quotes[idx].author;
+            document.getElementById('quote-location').textContent = quotes[idx].location;
+        }
+
+        function nextQuote() {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            renderQuote(quoteIndex);
+        }
+
+        function prevQuote() {
+            quoteIndex = (quoteIndex - 1 + quotes.length) % quotes.length;
+            renderQuote(quoteIndex);
+        }
+
+        // 5-Second Wedding Image Slideshow Engine
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide-item');
+        const dotsContainer = document.getElementById('slide-dots');
+        const progressBar = document.getElementById('slide-progress-bar');
+        const SLIDE_DURATION = 5000;
+        let slideTimer = null;
+
+        function updateSlideshowUI() {
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlideIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            if (dotsContainer) {
+                const dotButtons = dotsContainer.querySelectorAll('button');
+                dotButtons.forEach((dot, idx) => {
+                    if (idx === currentSlideIndex) {
+                        dot.className = 'w-6 h-2.5 rounded-full bg-brand-gold transition-all duration-300';
+                    } else {
+                        dot.className = 'w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300';
+                    }
+                });
+            }
+
+            if (progressBar) {
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+                setTimeout(() => {
+                    progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+                    progressBar.style.width = '100%';
+                }, 50);
+            }
+        }
+
+        function nextWeddingSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            updateSlideshowUI();
+        }
+
+        function changeWeddingSlide(direction) {
+            currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+            updateSlideshowUI();
+            resetSlideTimer();
+        }
+
+        function goToWeddingSlide(index) {
+            currentSlideIndex = index;
+            updateSlideshowUI();
+            resetSlideTimer();
+        }
+
+        function startSlideTimer() {
+            updateSlideshowUI();
+            slideTimer = setInterval(nextWeddingSlide, SLIDE_DURATION);
+        }
+
+        function resetSlideTimer() {
+            if (slideTimer) clearInterval(slideTimer);
+            slideTimer = setInterval(nextWeddingSlide, SLIDE_DURATION);
+        }
+
+        window.onload = function() {
+            startSlideTimer();
+        };
+    </script>
+</body>
+</html>
